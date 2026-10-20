@@ -1,7 +1,10 @@
+from typing import List
+
+
 class SoftwareEngineer:
     def __init__(self, name: str) -> None:
         self.name: str = name
-        self.skills: list[str] = []
+        self.skills: List[str] = []
 
     def learn_skill(self, skill: str) -> None:
         self.skills.append(skill)
@@ -40,7 +43,10 @@ class AndroidDeveloper(SoftwareEngineer):
 class FullStackDeveloper(BackendDeveloper, FrontendDeveloper):
     def __init__(self, name: str) -> None:
         super().__init__(name)
-        self.skills.extend(["JavaScript", "HTML", "CSS"])
+        # Evita duplicatas combinando as habilidades de forma única se necessário,
+        # ou garantindo que a lista consolidada não repita itens.
+        combined_skills = ["Python", "SQL", "Django", "JavaScript", "HTML", "CSS"]
+        self.skills = list(dict.fromkeys(combined_skills))  # Remove duplicatas preservando a ordem
 
     def create_web_application(self) -> None:
         print(f"{self.name} started creating a web application...")
