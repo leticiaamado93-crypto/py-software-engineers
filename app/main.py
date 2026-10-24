@@ -42,11 +42,9 @@ class AndroidDeveloper(SoftwareEngineer):
 
 class FullStackDeveloper(BackendDeveloper, FrontendDeveloper):
     def __init__(self, name: str) -> None:
-        super().__init__(name)
-        # Evita duplicatas combinando as habilidades de forma única se necessário,
-        # ou garantindo que a lista consolidada não repita itens.
-        combined_skills = ["Python", "SQL", "Django", "JavaScript", "HTML", "CSS"]
-        self.skills = list(dict.fromkeys(combined_skills))  # Remove duplicatas preservando a ordem
+        BackendDeveloper.__init__(self, name)
+        FrontendDeveloper.__init__(self, name)
+        self.skills = list(dict.fromkeys(self.skills))
 
     def create_web_application(self) -> None:
         print(f"{self.name} started creating a web application...")
